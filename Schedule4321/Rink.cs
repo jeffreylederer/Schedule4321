@@ -20,5 +20,21 @@ namespace Schedule4321
                 Players[i] = args[i];
             }
         }
+
+        /// <summary>
+        /// Find rinks where a player is playing each game
+        /// </summary>
+        /// <param name="games">a list of games which contains a list of rink objects</param>
+        /// <param name="player">index number of player</param>
+        /// <returns>an array of rinks (one for each game) where the player is playing</returns>
+        public static Rink[] FindRinks(List<Game> games, int player)
+        {
+            var rinks = new Rink[games.Count];
+            foreach(var game in games)
+            {
+                rinks[game.GameNumber] = game.Rinks.Find(x => x.Players.Any(y => y == player));
+            }
+            return rinks;
+        }
     }
 }
