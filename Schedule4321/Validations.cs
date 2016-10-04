@@ -13,21 +13,21 @@ namespace Schedule4321
         /// Check to make sure player is only in a four person game once
         /// </summary>
         /// <param name="rinks">An array of rink objects, each object is a rink number and an array of players</param>
-        /// <returns>return false if one or zero rinks have four players</returns>
-        public static bool MultipleFours(Rink[] rinks)
+        /// <returns>return true if one or zero rinks have two players</returns>
+        public static bool CheckTwos(Rink[] rinks)
         {
             int numofFours = 0;
             foreach (var rink in rinks)
             {
                 //limit number of four games
-                if (rink.Players.Length == 4)
+                if (rink.Players.Length == 2)
                 {
                     if (numofFours > 0)
-                        return true;
+                        return false;
                     numofFours++;
                 }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -50,30 +50,29 @@ namespace Schedule4321
         /// <summary>
         /// Check to make sure a player only see another opponent no more than once
         /// </summary>
-        /// <param name="numOfPlayers">Number of players in the tournament</param>
         /// <param name="player">the player index number</param>
         /// <param name="rinks">>An array of rink objects, each object is a rink number and an array of players</param>
-        /// <returns>returns false if no opponent is only seen zero or one time</returns>
-        public static bool CheckSameOpponent(int numOfPlayers, int player, Rink[] rinks)
+        /// <returns>returns true if no opponent is only seen zero or one time</returns>
+        private static bool CheckSameOpponent(int player, Rink[] rinks)
         {
 
             //test one, you only play against each player once
 
-            var players = new List<int>();
+            var opponents = new List<int>();
 
             foreach(var rink in rinks)
             {
-                foreach (var t in rink.Players)
+                foreach (var opponent in rink.Players)
                 {
-                    if (t != player && t != -1)
+                    if (opponent != player)
                     {
-                        if (players.Contains(t))
-                            return true;
-                        players.Add(t);
+                        if (opponents.Contains(opponent))
+                            return false;
+                        opponents.Add(opponent);
                     }
                 }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -81,15 +80,42 @@ namespace Schedule4321
         /// </summary>
         /// <param name="numOfPlayers">Number of players in the tournament</param>
         /// <param name="games">A list of game objects</param>
-        /// <returns>returns false if no opponent is only seen zero or one time for each player</returns>
-        public static bool CheckSameOpponent(List<Game> games, int numOfPlayers)
+        /// <returns>returns true if no opponent is only seen zero or one time for each player</returns>
+        private static bool CheckSameOpponent(List<Game> games, int numOfPlayers)
         {
 
-            for (int i = 0; i < numOfPlayers; i++)
+            for (int player = 0; player < numOfPlayers; player++)
             {
-                var rinks = Rink.FindRinks(games, i);
-                if (CheckSameOpponent(numOfPlayers, i, rinks))
-                    return true;
+                var rinks = Rink.FindRinks(games, player);
+                if ((numOfPlayers%3) != 0 && !CheckTwos(rinks))
+                    return false;
+                if (!CheckSameOpponent(player, rinks))
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool CheckGame(List<Game> games, int gameNumber, int[] original)
+        {
+            var perm = new Permutation();
+            var listPlayers2 = perm.GetPermutations(original);
+
+            foreach (var players in listPlayers2)
+            {
+                var game = games.Find(x => x.GameNumber == gameNumber);
+                if(game != null)
+                    games.Remove(game);
+                game = new Game(gameNumber);
+                game.AssignPlayers(players);
+                games.Add(game);
+                if (Validations.CheckSameOpponent(games, original.Count()))
+                {
+                    if (gameNumber == 2)
+                        return true;
+                    if (CheckGame(games, gameNumber + 1, original))
+                        return true;
+                }
+
             }
             return false;
         }
