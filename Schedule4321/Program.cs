@@ -36,7 +36,7 @@ namespace Schedule4321
                 }
                 else
                 {
-                    Console.Out.WriteLine("No solution for tournameent with {0:0} players", numOfPlayers);
+                    Console.Out.WriteLine("No solution for tournament with {0:0} players", numOfPlayers);
 
                 }
                 //Console.In.ReadLine();
