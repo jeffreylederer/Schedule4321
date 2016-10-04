@@ -19,26 +19,34 @@ namespace Schedule4321
         /// <param name="numOfPlayers"></param>
         public Tournament(int numOfPlayers)
         {
-            Games = new List<Game>();
             NumberOfPlayers = numOfPlayers;
+
+            // get all permutations of player order
             var perm = new Permutation();
             _listofPlayerLists = perm.GetPermutations(numOfPlayers);
-        }
 
-        public void Add(Game game)
-        {
+            // create game 1
+            Games = new List<Game>();
+            var game = new Game(0);
+            var players = new int[numOfPlayers];
+            for (var i = 0; i < players.Length; i++)
+            {
+                players[i] = i;
+            }
+            game.AssignPlayers(players);
             Games.Add(game);
         }
 
 
+
         /// <summary>
-        /// Check to make all players only see another opponent no more than once
+        /// Test to make sure all players only see another opponent no more than once in a tournament
         /// </summary>
-        /// <returns>returns true if no opponent is only seen zero or one time for each player</returns>
-        private  bool CheckSameOpponent()
+        /// <returns>true if game meets test and false if not</returns>
+        private bool CheckSameOpponent()
         {
 
-            for (int player = 0; player < NumberOfPlayers; player++)
+            for (var player = 0; player < NumberOfPlayers; player++)
             {
                 var rinks = FindRinks(player);
                 if ((NumberOfPlayers % 3) != 0 && !Validations.CheckTwos(rinks))
@@ -50,22 +58,25 @@ namespace Schedule4321
         }
 
         /// <summary>
-        /// Test to make sure games in tournament meet test such as each opponent plays each other just once
-        /// and on tournaments with number of players not divisible by three, each player in two persons game zero or one time.
+        /// Check to make sure games in tournament meet test such as each opponent plays each no more than once
+        /// and on tournaments with number of players not divisible by three, each player is in two persons game no more than once.
         /// </summary>
         /// <returns>true if game meets test and false if not</returns>
-        public bool CheckGame()
+        public bool ValidTournament()
         {
             foreach (var playersList in _listofPlayerLists)
             {
+                // create a game from list of players
                 var game = new Game(Games.Count);
                 game.AssignPlayers(playersList);
                 Games.Add(game);
+
+                // check to make sure a valid tournament
                 if (CheckSameOpponent())
                 {
                     if (Games.Count == 3)
                         return true;
-                    if (CheckGame())
+                    if (ValidTournament())
                         return true;
                 }
                 Games.Remove(game);
@@ -74,7 +85,7 @@ namespace Schedule4321
         }
 
         /// <summary>
-        /// Find rinks where a player is playing each game
+        /// Find rinks where a player is playing each game in tournament
         /// </summary>
         /// <param name="player">index number of player</param>
         /// <returns>an array of rinks (one for each game) where the player is playing</returns>
@@ -94,7 +105,7 @@ namespace Schedule4321
         public void PrintRinks()
         {
 
-            for (int player = 0; player < NumberOfPlayers; player++)
+            for (var player = 0; player < NumberOfPlayers; player++)
             {
                 foreach (var game in Games)
                 {

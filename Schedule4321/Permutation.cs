@@ -17,8 +17,8 @@ namespace Schedule4321
         /// <returns></returns>
         public IEnumerable<int[]> GetPermutations(int count)
         {
-            int[] work = new int[count];
-            for (int i = 0; i < work.Length; i++)
+            var work = new int[count];
+            for (var i = 0; i < work.Length; i++)
             {
                 work[i] = i;
             }
@@ -34,32 +34,32 @@ namespace Schedule4321
         /// <returns></returns>
         private IEnumerable<int[]> GetIntPermutations(int[] index, int offset, int len)
         {
-            if (len == 1)
+            switch (len)
             {
-                yield return index;
-            }
-            else if (len == 2)
-            {
-                yield return index;
-                Swap(index, offset, offset + 1);
-                yield return index;
-                Swap(index, offset, offset + 1);
-            }
-            else
-            {
-                foreach (int[] result in GetIntPermutations(index, offset + 1, len - 1))
-                {
-                    yield return result;
-                }
-                for (int i = 1; i < len; i++)
-                {
-                    Swap(index, offset, offset + i);
-                    foreach (int[] result in GetIntPermutations(index, offset + 1, len - 1))
+                case 1:
+                    yield return index;
+                    break;
+                case 2:
+                    yield return index;
+                    Swap(index, offset, offset + 1);
+                    yield return index;
+                    Swap(index, offset, offset + 1);
+                    break;
+                default:
+                    foreach (var result in GetIntPermutations(index, offset + 1, len - 1))
                     {
                         yield return result;
                     }
-                    Swap(index, offset, offset + i);
-                }
+                    for (var i = 1; i < len; i++)
+                    {
+                        Swap(index, offset, offset + i);
+                        foreach (var result in GetIntPermutations(index, offset + 1, len - 1))
+                        {
+                            yield return result;
+                        }
+                        Swap(index, offset, offset + i);
+                    }
+                    break;
             }
         }
 
@@ -71,7 +71,7 @@ namespace Schedule4321
         /// <param name="offset2">index of the other object to swap</param>
         private void Swap(int[] index, int offset1, int offset2)
         {
-            int temp = index[offset1];
+            var temp = index[offset1];
             index[offset1] = index[offset2];
             index[offset2] = temp;
         }

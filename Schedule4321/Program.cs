@@ -16,25 +16,10 @@ namespace Schedule4321
             //    Console.Out.Write("{0:0}\t", player+1);
             //}
             Console.Out.Write("\n");
-            for (int numOfPlayers=9; numOfPlayers<16; numOfPlayers++)
+            for (var numOfPlayers=9; numOfPlayers<16; numOfPlayers++)
             {
-               
                 var tournament = new Tournament(numOfPlayers);
-
-                var games = new List<Game>();
-                int numOfRinks = numOfPlayers / 3;
- 
-                // game 1
-                var game = new Game(0);
-                var players = new int[numOfPlayers];
-                for (var i = 0; i < players.Length; i++)
-                {
-                    players[i] = i;
-                }
-                game.AssignPlayers(players);
-                tournament.Add(game);
-
-                if (tournament.CheckGame())
+                if (tournament.ValidTournament())
                 {
                     tournament.PrintGames();
                     tournament.PrintRinks();

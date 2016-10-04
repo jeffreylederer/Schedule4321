@@ -37,8 +37,8 @@ namespace Schedule4321
         /// <param name="players">an array of player indices</param>
         public void AssignPlayers(int[] players)
         {
-            
-            int player = 0;
+
+            var player = 0;
             int r;
             switch (players.Count() % 3)
             {

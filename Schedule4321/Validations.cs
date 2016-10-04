@@ -7,13 +7,13 @@ namespace Schedule4321
     public static class Validations
     {
         /// <summary>
-        /// Check to make sure player is only in a four person game once
+        /// Check to make sure player is only in a two person game no more than once
         /// </summary>
         /// <param name="rinks">An array of rink objects, each object is a rink number and an array of players</param>
         /// <returns>return true if one or zero rinks have two players</returns>
         public static bool CheckTwos(Rink[] rinks)
         {
-            int numofFours = 0;
+            var numofFours = 0;
             foreach (var rink in rinks)
             {
                 //limit number of four games
@@ -28,7 +28,7 @@ namespace Schedule4321
         }
 
         /// <summary>
-        /// Make sure player does plays on same rink once
+        /// Make sure player does plays on same rink more than once
         /// </summary>
         /// <param name="rinks">An array of rink objects, each object is a rink number and an array of players</param>
         /// <returns>reuturns false if on rinks is repeated</returns>
@@ -45,7 +45,7 @@ namespace Schedule4321
         }
 
         /// <summary>
-        /// Check to make sure a player only see another opponent no more than once in tournament
+        /// Check to make sure a specified player only sees another opponent no more than once in tournament
         /// </summary>
         /// <param name="player">the player index number</param>
         /// <param name="rinks">>An array of rink objects, each object is a rink number and an array of players</param>

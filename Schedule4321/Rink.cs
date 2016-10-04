@@ -20,7 +20,7 @@ namespace Schedule4321
         {
             RinkNumber = rinkNumber;
             Players = new int[args.Length];
-            for (int i = 0; i < args.Length; i++)
+            for (var i = 0; i < args.Length; i++)
             {
                 Players[i] = args[i];
             }
