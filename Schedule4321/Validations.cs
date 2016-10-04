@@ -50,7 +50,7 @@ namespace Schedule4321
         /// <param name="player">the player index number</param>
         /// <param name="rinks">>An array of rink objects, each object is a rink number and an array of players</param>
         /// <returns>returns true if no opponent is only seen zero or one time</returns>
-        private static bool CheckSameOpponent(int player, Rink[] rinks)
+        public static bool CheckSameOpponent(int player, Rink[] rinks)
         {
 
             //test one, you only play against each player once
@@ -72,57 +72,6 @@ namespace Schedule4321
             return true;
         }
 
-        /// <summary>
-        /// Check to make all players only see another opponent no more than once
-        /// </summary>
-        /// <param name="numOfPlayers">Number of players in the tournament</param>
-        /// <param name="games">A list of game objects</param>
-        /// <returns>returns true if no opponent is only seen zero or one time for each player</returns>
-        private static bool CheckSameOpponent(List<Game> games, int numOfPlayers)
-        {
-
-            for (int player = 0; player < numOfPlayers; player++)
-            {
-                var rinks = Rink.FindRinks(games, player);
-                if ((numOfPlayers%3) != 0 && !CheckTwos(rinks))
-                    return false;
-                if (!CheckSameOpponent(player, rinks))
-                    return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Test to make sure games in tournament meet test such as each opponent plays each other just once
-        /// and on tournaments with number of players not divisible by three, each player in two persons game zero or one time.
-        /// </summary>
-        /// <param name="games">A list of game objects</param>
-        /// <param name="gameNumber">It will either be 1 (for second game) or 2 (for third game)</param>
-        /// <param name="original">a interger array with one player index assigned to each array memeber</param>
-        /// <returns>true if game meets test and false if not</returns>
-        public static bool CheckGame(List<Game> games, int gameNumber, int[] original)
-        {
-            var perm = new Permutation();
-            var listPlayers2 = perm.GetPermutations(original);
-
-            foreach (var players in listPlayers2)
-            {
-                var game = games.Find(x => x.GameNumber == gameNumber);
-                if(game != null)
-                    games.Remove(game);
-                game = new Game(gameNumber);
-                game.AssignPlayers(players);
-                games.Add(game);
-                if (Validations.CheckSameOpponent(games, original.Count()))
-                {
-                    if (gameNumber == 2)
-                        return true;
-                    if (CheckGame(games, gameNumber + 1, original))
-                        return true;
-                }
-
-            }
-            return false;
-        }
+        
     }
 }

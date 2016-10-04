@@ -11,6 +11,7 @@ namespace Schedule4321
         public int GameNumber { get; set; }
         public List<Rink> Rinks { get; set; }
 
+
         /// <summary>
         /// Constructor for Game object
         /// </summary>
@@ -70,19 +71,6 @@ namespace Schedule4321
             }
 
         }
-
-        /// <summary>
-        /// Create an array of player indices
-        /// </summary>
-        /// <param name="players">an array of player indices</param>
-        public static void DistributePlayers( int[] players)
-        {
-            for(var i=0;i<players.Length; i++)
-            {
-                players[i] = i;
-            }
-        }
-
-       
+      
     }
 }

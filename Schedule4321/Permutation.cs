@@ -13,22 +13,16 @@ namespace Schedule4321
         /// <summary>
         /// Takes an array of objects and returns a "list" of all permuations of that array of ojectx
         /// </summary>
-        /// <typeparam name="T">type of objects</typeparam>
-        /// <param name="items">an array of objects of that type</param>
+        /// <param name="count">size of array</param>
         /// <returns></returns>
-        public IEnumerable<T[]> GetPermutations<T>(T[] items)
+        public IEnumerable<int[]> GetPermutations(int count)
         {
-            int[] work = new int[items.Length];
+            int[] work = new int[count];
             for (int i = 0; i < work.Length; i++)
             {
                 work[i] = i;
             }
-            foreach (int[] index in GetIntPermutations(work, 0, work.Length))
-            {
-                T[] result = new T[index.Length];
-                for (int i = 0; i < index.Length; i++) result[i] = items[index[i]];
-                yield return result;
-            }
+            return GetIntPermutations(work, 0, work.Length).Select(index => work);
         }
 
         /// <summary>
@@ -70,9 +64,9 @@ namespace Schedule4321
         }
 
         /// <summary>
-        /// Swap two objects in an array of objects
+        /// Swap two ints in an array of objects
         /// </summary>
-        /// <param name="index">an array of objects</param>
+        /// <param name="index">an array of ints</param>
         /// <param name="offset1">index of one object to swap</param>
         /// <param name="offset2">index of the other object to swap</param>
         private void Swap(int[] index, int offset1, int offset2)
