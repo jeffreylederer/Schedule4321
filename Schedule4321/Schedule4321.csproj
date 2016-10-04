@@ -78,7 +78,7 @@
     <Compile Include="DAL\Schedule4321Context.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Output.cs" />
-    <Compile Include="Players.cs" />
+    <Compile Include="Permutation.cs" />
     <Compile Include="Rink.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Program.cs" />

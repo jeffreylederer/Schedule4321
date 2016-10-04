@@ -11,17 +11,29 @@ namespace Schedule4321
         public int GameNumber { get; set; }
         public List<Rink> Rinks { get; set; }
 
+        /// <summary>
+        /// Constructor for Game object
+        /// </summary>
+        /// <param name="gameNumber">Game number in tournament</param>
         public Game(int gameNumber)
         {
             GameNumber = gameNumber;
             Rinks = new List<Rink>();
         }
 
+        /// <summary>
+        /// Add a rink to game
+        /// </summary>
+        /// <param name="rink">a Rink object</param>
         public void Add(Rink rink)
         {
             Rinks.Add(rink);
         }
 
+        /// <summary>
+        /// Assign an array of players to rinks
+        /// </summary>
+        /// <param name="players">an array of player indices</param>
         public void AssignPlayers(int[] players)
         {
             
@@ -59,6 +71,10 @@ namespace Schedule4321
 
         }
 
+        /// <summary>
+        /// Create an array of player indices
+        /// </summary>
+        /// <param name="players">an array of player indices</param>
         public static void DistributePlayers( int[] players)
         {
             for(var i=0;i<players.Length; i++)

@@ -6,9 +6,6 @@ namespace Schedule4321
 {
     public static class Validations
     {
-        
-
-
         /// <summary>
         /// Check to make sure player is only in a four person game once
         /// </summary>
@@ -31,7 +28,7 @@ namespace Schedule4321
         }
 
         /// <summary>
-        /// Make sure player on plays on same rink once
+        /// Make sure player does plays on same rink once
         /// </summary>
         /// <param name="rinks">An array of rink objects, each object is a rink number and an array of players</param>
         /// <returns>reuturns false if on rinks is repeated</returns>
@@ -48,7 +45,7 @@ namespace Schedule4321
         }
 
         /// <summary>
-        /// Check to make sure a player only see another opponent no more than once
+        /// Check to make sure a player only see another opponent no more than once in tournament
         /// </summary>
         /// <param name="player">the player index number</param>
         /// <param name="rinks">>An array of rink objects, each object is a rink number and an array of players</param>
@@ -95,6 +92,14 @@ namespace Schedule4321
             return true;
         }
 
+        /// <summary>
+        /// Test to make sure games in tournament meet test such as each opponent plays each other just once
+        /// and on tournaments with number of players not divisible by three, each player in two persons game zero or one time.
+        /// </summary>
+        /// <param name="games">A list of game objects</param>
+        /// <param name="gameNumber">It will either be 1 (for second game) or 2 (for third game)</param>
+        /// <param name="original">a interger array with one player index assigned to each array memeber</param>
+        /// <returns>true if game meets test and false if not</returns>
         public static bool CheckGame(List<Game> games, int gameNumber, int[] original)
         {
             var perm = new Permutation();

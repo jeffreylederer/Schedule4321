@@ -11,9 +11,14 @@ namespace Schedule4321
         public int RinkNumber { get; set; }
         public int[] Players { get; set; }
 
-        public Rink(int rink, params int[] args)
+        /// <summary>
+        /// Constructor for a Rink ojbect
+        /// </summary>
+        /// <param name="rinkNumber">Rink number in the game</param>
+        /// <param name="args">an array of player indices</param>
+        public Rink(int rinkNumber, params int[] args)
         {
-            RinkNumber = rink;
+            RinkNumber = rinkNumber;
             Players = new int[args.Length];
             for (int i = 0; i < args.Length; i++)
             {

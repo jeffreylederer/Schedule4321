@@ -21,9 +21,7 @@ namespace Schedule4321
 
                 var games = new List<Game>();
                 int numOfRinks = numOfPlayers / 3;
-                
-                
-
+ 
                 // game 1
                 var game = new Game(0);
                 var players = new int[numOfPlayers];
@@ -38,14 +36,13 @@ namespace Schedule4321
                 }
                 else
                 {
-                    Console.Out.WriteLine("No solution for player number = {0:0}", numOfPlayers);
+                    Console.Out.WriteLine("No solution for tournameent with {0:0} players", numOfPlayers);
 
                 }
                 //Console.In.ReadLine();
             }
             Console.In.ReadLine();
         }
-
         
     }
 }
