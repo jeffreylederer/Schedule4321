@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Schedule4321
 {
+    /// <summary>
+    /// This class is just methods for checking if rinks in
+    /// </summary>
     public static class Validations
     {
         /// <summary>

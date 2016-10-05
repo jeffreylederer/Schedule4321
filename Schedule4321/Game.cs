@@ -6,6 +6,9 @@ using System.Data.Entity.Core.Metadata.Edm;
 
 namespace Schedule4321
 {
+    /// <summary>
+    /// This class represents a game in a tournament played on multiple rinks simultaneously
+    /// </summary>
     public class Game : IEquatable<Game> 
 
     {
@@ -73,9 +76,14 @@ namespace Schedule4321
 
         }
 
-        public bool Equals(Game b1)
+        /// <summary>
+        /// Checks to see if another game is the same as this one
+        /// </summary>
+        /// <param name="game">another game</param>
+        /// <returns>true if same object</returns>
+        public bool Equals(Game game)
         {
-            return b1.GameNumber == GameNumber;
+            return game.GameNumber == GameNumber;
         }
 
 

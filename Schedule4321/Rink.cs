@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Schedule4321
 {
+    /// <summary>
+    /// This class represent a rink in a game. Each rink can have either two or three players
+    /// </summary>
     public class Rink : IEquatable<Rink>
     {
         public int RinkNumber { get; set; }
@@ -26,9 +29,14 @@ namespace Schedule4321
             }
         }
 
-        public bool Equals(Rink r1)
+        /// <summary>
+        /// Checks if another rink is the same as this rink
+        /// </summary>
+        /// <param name="rink">another rink</param>
+        /// <returns>true if other object is equal to this object</returns>
+        public bool Equals(Rink rink)
         {
-            return r1.RinkNumber == RinkNumber;
+            return rink.RinkNumber == RinkNumber;
         }
       
     }
