@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Schedule4321
 {
-    public class Rink
+    public class Rink : IEquatable<Rink>
     {
         public int RinkNumber { get; set; }
         public int[] Players { get; set; }
@@ -24,6 +24,11 @@ namespace Schedule4321
             {
                 Players[i] = args[i];
             }
+        }
+
+        public bool Equals(Rink r1)
+        {
+            return r1.RinkNumber == RinkNumber;
         }
       
     }

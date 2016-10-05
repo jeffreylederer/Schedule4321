@@ -6,7 +6,8 @@ using System.Data.Entity.Core.Metadata.Edm;
 
 namespace Schedule4321
 {
-    public class Game
+    public class Game : IEquatable<Game> 
+
     {
         public int GameNumber { get; set; }
         public List<Rink> Rinks { get; set; }
@@ -71,6 +72,12 @@ namespace Schedule4321
             }
 
         }
-      
+
+        public bool Equals(Game b1)
+        {
+            return b1.GameNumber == GameNumber;
+        }
+
+
     }
 }

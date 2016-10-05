@@ -69,7 +69,7 @@ namespace Schedule4321
         /// <param name="index">an array of ints</param>
         /// <param name="offset1">index of one object to swap</param>
         /// <param name="offset2">index of the other object to swap</param>
-        private void Swap(int[] index, int offset1, int offset2)
+        private void Swap(IList<int> index, int offset1, int offset2)
         {
             var temp = index[offset1];
             index[offset1] = index[offset2];
