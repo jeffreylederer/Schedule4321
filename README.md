@@ -15,4 +15,4 @@ I am thinking there must be a trick around the fact that a rink with players 1,2
 this trick.
 
 I am not worried about the final rule which is that players should not play on the same rink more than once in a tournament.
-I think that after coming up with valid tournament, I can add extra rinks and move individual rinks around in each game around until I satisfied this extra rule.
+I think that after coming up with a valid tournament, I can add extra rinks on the greem and move individual rinks around in each game until I satisfy this extra rule.
