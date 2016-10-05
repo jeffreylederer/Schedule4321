@@ -15,7 +15,7 @@ namespace Schedule4321
         /// </summary>
         /// <param name="count">size of array</param>
         /// <returns></returns>
-        public IEnumerable<int[]> GetPermutations(int count)
+        public static IEnumerable<int[]> GetPermutations(int count)
         {
             var work = new int[count];
             for (var i = 0; i < work.Length; i++)
@@ -32,7 +32,7 @@ namespace Schedule4321
         /// <param name="offset">an offset index of where to swap items</param>
         /// <param name="len">length to end of the array of objects</param>
         /// <returns></returns>
-        private IEnumerable<int[]> GetIntPermutations(int[] index, int offset, int len)
+        private static IEnumerable<int[]> GetIntPermutations(int[] index, int offset, int len)
         {
             switch (len)
             {
@@ -69,7 +69,7 @@ namespace Schedule4321
         /// <param name="index">an array of ints</param>
         /// <param name="offset1">index of one object to swap</param>
         /// <param name="offset2">index of the other object to swap</param>
-        private void Swap(IList<int> index, int offset1, int offset2)
+        private static void Swap(IList<int> index, int offset1, int offset2)
         {
             var temp = index[offset1];
             index[offset1] = index[offset2];

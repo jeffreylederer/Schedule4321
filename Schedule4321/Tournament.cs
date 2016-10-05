@@ -22,8 +22,7 @@ namespace Schedule4321
             NumberOfPlayers = numOfPlayers;
 
             // get all permutations of player order
-            var perm = new Permutation();
-            _listofPlayerLists = perm.GetPermutations(numOfPlayers);
+            _listofPlayerLists = Permutation.GetPermutations(numOfPlayers);
 
             // create game 1
             Games = new List<Game>();

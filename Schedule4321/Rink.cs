@@ -15,7 +15,7 @@ namespace Schedule4321
         public int[] Players { get; set; }
 
         /// <summary>
-        /// Constructor for a Rink ojbect
+        /// Constructor for a Rink objects
         /// </summary>
         /// <param name="rinkNumber">Rink number in the game</param>
         /// <param name="args">an array of player indices</param>
@@ -27,6 +27,7 @@ namespace Schedule4321
             {
                 Players[i] = args[i];
             }
+            Array.Sort(Players);
         }
 
         /// <summary>
