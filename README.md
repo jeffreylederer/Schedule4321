@@ -8,7 +8,7 @@ In theory this should work with any tournament with 9 to 30 players. It does not
 When there are the number of players is not evenly divisible by 3, the program creates one or four games with two players.
 
 The only issue is the PROGRAM CANNOT complete. It uses permutations to create different possible player orders. As more players are added to the game, the permuations grow by x!*x!. The only trick I
-am doing right now is to first create game one with players order from 1 to x. I then try to create game twos running through the permutations until I find a valid two game tournament. I then do the
+am doing right now is to first create game one with players ordered from 1 to x. I then try to create game twos running through the permutations until I find a valid two game tournament. I then do the
 same trick with game three. If no valid three game tournament is found, I go back to the second step with the next permutation.
 
 I am thinking there must be a trick around the fact that a rink with players 1,2,3 is the same a rink with players 3,2,1 with respect to validity. I just cannot figure out how to take advantage of
