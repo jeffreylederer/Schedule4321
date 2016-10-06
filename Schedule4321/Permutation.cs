@@ -14,11 +14,12 @@ namespace Schedule4321
         /// Takes an array of objects and returns a "list" of all permuations of that array of ojectx
         /// </summary>
         /// <param name="count">size of array</param>
+        /// <param name="gameNumber">mix up the order of permutation for each game; in theory should speed up the search</para>
         /// <returns></returns>
-        public static IEnumerable<int[]> GetPermutations(int count, int scheme)
+        public static IEnumerable<int[]> GetPermutations(int count, int gameNumber)
         {
             var work = new int[count];
-            if (scheme == 1)
+            if (gameNumber == 1)
             {
                 int k = work.Length - 1;
                 for (var i = 0; i < work.Length; i++)

@@ -66,7 +66,7 @@ namespace Schedule4321
 
         /// <summary>
         /// Check to make sure games in tournament meet test such as each opponent plays each no more than once
-        /// and on tournaments with number of players not divisible by three, each player is in two persons game no more than once.
+        /// and on tournaments with number of players not divisible by three, each player is in four persons game no more than once.
         /// </summary>
         /// <returns>true if game meets test and false if not</returns>
         public bool ValidTournament()
@@ -97,7 +97,9 @@ namespace Schedule4321
         /// </summary>
         public void PrintRinks()
         {
-
+            for (var player = 0; player < NumberOfPlayers; player++)
+                Console.Out.Write("{0:0}\t", player+1);
+            Console.Out.WriteLine();
             for (var player = 0; player < NumberOfPlayers; player++)
             {
                 foreach (var game in Games)
@@ -109,7 +111,8 @@ namespace Schedule4321
                 }
                 Console.Out.Write("\t");
             }
-            Console.Out.Write("\n");
+            Console.Out.WriteLine();
+            Console.Out.WriteLine();
         }
 
         /// <summary>
@@ -117,6 +120,7 @@ namespace Schedule4321
         /// </summary>
         public  void PrintGames()
         {
+            Console.Out.WriteLine("Game with {0:0} players", NumberOfPlayers);
             foreach (var game in Games)
             {
                 var rks = game.Rinks;

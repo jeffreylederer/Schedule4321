@@ -15,13 +15,13 @@ namespace Schedule4321
         /// </summary>
         /// <param name="rinks">An array of rink objects, each object is a rink number and an array of players</param>
         /// <returns>return true if one or zero rinks have two players</returns>
-        public static bool CheckTwos(Rink[] rinks)
+        public static bool CheckFours(Rink[] rinks)
         {
             var numofFours = 0;
             foreach (var rink in rinks)
             {
                 //limit number of four games
-                if (rink.Players.Length == 2)
+                if (rink.Players.Length == 4)
                 {
                     if (numofFours > 0)
                         return false;
@@ -52,7 +52,7 @@ namespace Schedule4321
         /// Check to make sure a specified player only sees another opponent no more than once in tournament
         /// </summary>
         /// <param name="player">the player index number</param>
-        /// <param name="Games">>An array of rink objects, each object is a rink number and an array of players</param>
+        /// <param name="Games">>List of Games in a tournament</param>
         /// <returns>returns true if no opponent is only seen zero or one time</returns>
         public static Task<bool> CheckSameOpponent(int player, List<Game> Games)
         {

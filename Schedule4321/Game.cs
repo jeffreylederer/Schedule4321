@@ -54,23 +54,22 @@ namespace Schedule4321
                         Add(new Rink(r, players[player++], players[player++], players[player++]));
                     }
                     break;
-                // two games with two players
+                // one game with four players
                 case 1:
                     for (r = 0; r < players.Count()/3 - 1; r++)
                     {
                         Add(new Rink(r, players[player++], players[player++], players[player++]));
                     }
-                    Add(new Rink(r++, players[player++], players[player++]));
-                    Add(new Rink(r, players[player++], players[player++]));
-
+                    Add(new Rink(r++, players[player++], players[player++], players[player++], players[player++]));
                     break;
-                // one game with two players
+                // two games with four players
                 case 2:
-                    for (r = 0; r < players.Count()/3; r++)
+                    for (r = 0; r < players.Count()/3-2; r++)
                     {
                         Add(new Rink(r, players[player++], players[player++], players[player++]));
                     }
-                    Add(new Rink(r, players[player++], players[player++]));
+                    Add(new Rink(r++, players[player++], players[player++], players[player++], players[player++]));
+                    Add(new Rink(r, players[player++], players[player++], players[player++], players[player++]));
                     break;
             }
 
