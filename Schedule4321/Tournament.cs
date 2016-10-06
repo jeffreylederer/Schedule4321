@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,15 +47,20 @@ namespace Schedule4321
         /// <returns>true if game meets test and false if not</returns>
         private bool CheckSameOpponent( )
         {
-
+            var tasks = new List<Task<bool>>();
             for (var player = 0; player < NumberOfPlayers; player++)
             {
-                var rinks = FindRinks(player);
-                //if ((NumberOfPlayers % 3) != 0 && !Validations.CheckTwos(rinks))
-                //    return false;
-                if (!Validations.CheckSameOpponent(player, rinks))
-                    return false;
+                var player1 = player;
+                tasks.Add(Validations.CheckSameOpponent(player1, Games));
             }
+            Task.WaitAll(tasks.ToArray());
+            foreach(var task in tasks)
+            {
+                if (!task.Result)
+                    return false;
+
+            }
+
             return true;
         }
 

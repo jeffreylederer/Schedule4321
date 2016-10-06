@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 
 namespace Schedule4321
@@ -51,28 +52,34 @@ namespace Schedule4321
         /// Check to make sure a specified player only sees another opponent no more than once in tournament
         /// </summary>
         /// <param name="player">the player index number</param>
-        /// <param name="rinks">>An array of rink objects, each object is a rink number and an array of players</param>
+        /// <param name="Games">>An array of rink objects, each object is a rink number and an array of players</param>
         /// <returns>returns true if no opponent is only seen zero or one time</returns>
-        public static bool CheckSameOpponent(int player, Rink[] rinks)
+        public static Task<bool> CheckSameOpponent(int player, List<Game> Games)
         {
-
-            //test one, you only play against each player once
-
-            var opponents = new List<int>();
-
-            foreach(var rink in rinks)
+            return Task.Run(() =>
             {
-                foreach (var opponent in rink.Players)
+                var rinks = new Rink[Games.Count];
+                foreach (var game in Games)
                 {
-                    if (opponent != player)
+                    rinks[game.GameNumber] = game.Rinks.Find(x => x.Players.Any(y => y == player));
+                }
+
+                var opponents = new List<int>();
+
+                foreach (var rink in rinks)
+                {
+                    foreach (var opponent in rink.Players)
                     {
-                        if (opponents.Contains(opponent))
-                            return false;
-                        opponents.Add(opponent);
+                        if (opponent != player)
+                        {
+                            if (opponents.Contains(opponent))
+                                return false;
+                            opponents.Add(opponent);
+                        }
                     }
                 }
-            }
-            return true;
+                return true;
+            });
         }
 
         
