@@ -91,21 +91,7 @@ namespace Schedule4321
             return false;
         }
 
-        /// <summary>
-        /// Find rinks where a player is playing each game in tournament
-        /// </summary>
-        /// <param name="player">index number of player</param>
-        /// <returns>an array of rinks (one for each game) where the player is playing</returns>
-        public Rink[] FindRinks(int player)
-        {
-            var rinks = new Rink[Games.Count];
-            foreach (var game in Games)
-            {
-                rinks[game.GameNumber] = game.Rinks.Find(x => x.Players.Any(y => y == player));
-            }
-            return rinks;
-        }
-
+        
         /// <summary>
         /// prints out a list of rinks for each player sorted by games; one line for each number of players in a tournament.
         /// </summary>
