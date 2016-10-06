@@ -12,6 +12,7 @@ namespace Schedule4321
         private List<Game> Games { get; set; }
 
         private readonly IEnumerable<int[]> _listofPlayerLists;
+        private readonly IEnumerable<int[]> _listofPlayerLists1;
 
         /// <summary>
         /// Constructor for class
@@ -22,7 +23,8 @@ namespace Schedule4321
             NumberOfPlayers = numOfPlayers;
 
             // get all permutations of player order
-            _listofPlayerLists = Permutation.GetPermutations(numOfPlayers);
+            _listofPlayerLists = Permutation.GetPermutations(numOfPlayers,1);
+            _listofPlayerLists1 = Permutation.GetPermutations(numOfPlayers, 2);
 
             // create game 1
             Games = new List<Game>();
@@ -42,14 +44,14 @@ namespace Schedule4321
         /// Test to make sure all players only see another opponent no more than once in a tournament
         /// </summary>
         /// <returns>true if game meets test and false if not</returns>
-        private bool CheckSameOpponent()
+        private bool CheckSameOpponent( )
         {
 
             for (var player = 0; player < NumberOfPlayers; player++)
             {
                 var rinks = FindRinks(player);
-                if ((NumberOfPlayers % 3) != 0 && !Validations.CheckTwos(rinks))
-                    return false;
+                //if ((NumberOfPlayers % 3) != 0 && !Validations.CheckTwos(rinks))
+                //    return false;
                 if (!Validations.CheckSameOpponent(player, rinks))
                     return false;
             }
@@ -63,7 +65,7 @@ namespace Schedule4321
         /// <returns>true if game meets test and false if not</returns>
         public bool ValidTournament()
         {
-            foreach (var playersList in _listofPlayerLists)
+            foreach (var playersList in Games.Count==1?_listofPlayerLists : _listofPlayerLists1)
             {
                 // create a game from list of players
                 var game = new Game(Games.Count);

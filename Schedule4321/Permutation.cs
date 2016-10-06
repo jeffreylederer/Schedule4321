@@ -15,13 +15,28 @@ namespace Schedule4321
         /// </summary>
         /// <param name="count">size of array</param>
         /// <returns></returns>
-        public static IEnumerable<int[]> GetPermutations(int count)
+        public static IEnumerable<int[]> GetPermutations(int count, int scheme)
         {
             var work = new int[count];
-            for (var i = 0; i < work.Length; i++)
+            if (scheme == 1)
             {
-                work[i] = i;
+                int k = work.Length - 1;
+                for (var i = 0; i < work.Length; i++)
+                {
+                    work[i] = k--;
+                }
             }
+            else
+            {
+                int k = work.Length/2;
+                for (var i = 0; i < work.Length; i++)
+                {
+                    k++;
+                    k = k==work.Length? 0: k;
+                    work[i] = k;
+                }
+            }
+
             return GetIntPermutations(work, 0, work.Length).Select(index => work);
         }
 
